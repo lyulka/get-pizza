@@ -1,24 +1,27 @@
 import React from 'react';
-import logo from './logo.svg';
+import { useState } from 'react';
+import LogoPizza from './images/pizza.svg';
+import PizzaMenu from './server/pizzas.json';
+
+import Menu from './components/Menu.jsx';
+import Cart from './components/Cart.jsx';
+
+import 'antd/dist/antd.css';
 import './App.css';
 
-function App() {
+const App = () => {
+  const [ cartContents, setCartContents ] = useState([]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <header>
+        <img className="header-logo" src={LogoPizza} alt="Stylised pizza logo"/>
+        <h1 className="header-title">Get pizza</h1>
       </header>
+      <div className="order-container">
+        <Menu items={PizzaMenu}/>
+        <Cart items={cartContents}/>
+      </div>
     </div>
   );
 }
